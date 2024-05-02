@@ -1,2 +1,2 @@
 json.extract! feature, :id, :name, :created_at, :updated_at
-json.url feature_url(feature, format: :json)
+json.url parking_feature_url(feature.parking,feature, format: :json)

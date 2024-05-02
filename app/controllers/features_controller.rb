@@ -1,40 +1,41 @@
 class FeaturesController < ApplicationController
+  before_action :set_parking, only: %i[ index create ]
   before_action :set_feature, only: %i[ show update destroy ]
 
-  # GET /features or /features.json
+  # GET parkings/1/features.json
   def index
-    @features = Feature.all
+    @features = @parking.features
   end
 
-  # GET /features/1 or /features/1.json
+  # GET parkings/1/features/1.json
   def show
   end
 
-  # POST /features or /features.json
+  # POST parkings/1/features.json
   def create
-    @feature = Feature.new(feature_params)
+    @feature = @parking.features.build(feature_params)
 
     respond_to do |format|
       if @feature.save
-        format.json { render :show, status: :created, location: @feature }
+        format.json { render :show, status: :created }
       else
         format.json { render json: @feature.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /features/1 or /features/1.json
+  # PATCH/PUT parkings/1/features/1.json
   def update
     respond_to do |format|
       if @feature.update(feature_params)
-        format.json { render :show, status: :ok, location: @feature }
+        format.json { render :show, status: :ok }
       else
         format.json { render json: @feature.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /features/1 or /features/1.json
+  # DELETE parkings/1/features/1.json
   def destroy
     @feature.destroy!
 
@@ -44,7 +45,10 @@ class FeaturesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_parking
+      @parking = Parking.find(params[:parking_id])
+    end
+
     def set_feature
       @feature = Feature.find(params[:id])
     end
