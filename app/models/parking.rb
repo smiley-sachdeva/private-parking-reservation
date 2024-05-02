@@ -5,6 +5,8 @@ class Parking < ApplicationRecord
 
     validate :open_time_before_close_time
 
+    has_many :features
+
     private
     def open_time_before_close_time
         errors.add(:base, "Opening time must be before closing time") if open_time > close_time
