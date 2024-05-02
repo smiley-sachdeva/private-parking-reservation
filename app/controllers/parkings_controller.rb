@@ -1,5 +1,5 @@
 class ParkingsController < ApplicationController
-  before_action :set_parking, only: %i[ show edit update destroy ]
+  before_action :set_parking, only: %i[ show update destroy ]
 
   # GET /parkings or /parkings.json
   def index
