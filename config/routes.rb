@@ -1,7 +1,4 @@
-Rails.application.routes.draw do
-  resources :features
-  
-  
+Rails.application.routes.draw do  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,5 +17,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :parkings
+  
+  resources :parkings, except: [:edit, :new] do
+    resources :features, except: [:edit, :new]
+    resources :slots, except: [:edit, :new]
+  end
 end
