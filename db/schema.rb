@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_02_130655) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_150133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_130655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parking_id"
+    t.index ["name", "parking_id"], name: "index_features_on_name_and_parking_id", unique: true
     t.index ["parking_id"], name: "index_features_on_parking_id"
+  end
+
+  create_table "features_slots", force: :cascade do |t|
+    t.bigint "slot_id"
+    t.bigint "feature_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feature_id"], name: "index_features_slots_on_feature_id"
+    t.index ["slot_id"], name: "index_features_slots_on_slot_id"
   end
 
   create_table "jwt_denylists", force: :cascade do |t|
@@ -49,6 +59,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_130655) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "slots", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.time "open_time"
+    t.time "close_time"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "parking_id"
+    t.index ["name", "parking_id"], name: "index_slots_on_name_and_parking_id", unique: true
+    t.index ["parking_id"], name: "index_slots_on_parking_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,4 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_130655) do
   end
 
   add_foreign_key "features", "parkings"
+  add_foreign_key "features_slots", "features"
+  add_foreign_key "features_slots", "slots"
+  add_foreign_key "slots", "parkings"
 end
