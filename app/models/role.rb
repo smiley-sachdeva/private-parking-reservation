@@ -13,7 +13,6 @@ class Role < ApplicationRecord
   scopify
 
   def to_ar
-    byebug
     map(&:name)
   end
 end

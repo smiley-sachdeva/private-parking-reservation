@@ -8,8 +8,13 @@ class Slot < ApplicationRecord
         closed: 2
       }
 
+    validates :name, presence: true,uniqueness: { 
+            scope: :parking_id, 
+            message: "must be unique within the parking" 
+        }
+
     validate :validate_opening_and_closing_times
-    validates :features, presence: true
+    # validates :features, presence: true
     validate :validate_timings_respective_to_parking
 
     after_initialize :set_default_status, if: :new_record?
