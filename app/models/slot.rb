@@ -9,8 +9,9 @@ class Slot < ApplicationRecord
       }
 
     validate :validate_opening_and_closing_times
-    validates :features, presence: true
+    # validates :features, presence: true
     validate :validate_timings_respective_to_parking
+    validate :unique_name_within_parking
 
     after_initialize :set_default_status, if: :new_record?
 
@@ -43,5 +44,11 @@ class Slot < ApplicationRecord
 
     def validate_opening_and_closing_times
         errors.add(:base, "Opening time must be before closing time") if open_time.present? && close_time.present? && open_time >= close_time
+    end
+
+    def unique_name_within_parking
+        if Slot.exists?(name: name, parking_id: parking_id)
+          errors.add(:name, "must be unique within the parking")
+        end
     end
 end
