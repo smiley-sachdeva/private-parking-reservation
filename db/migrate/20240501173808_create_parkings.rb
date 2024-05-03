@@ -3,8 +3,8 @@ class CreateParkings < ActiveRecord::Migration[7.1]
     create_table :parkings do |t|
       t.string :name
       t.text :address
-      t.datetime :open_time
-      t.datetime :close_time
+      t.time :open_time
+      t.time :close_time
 
       t.timestamps
     end
