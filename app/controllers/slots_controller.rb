@@ -4,7 +4,13 @@ class SlotsController < ApplicationController
 
   # GET parkings/1/slots.json
   def index
-    @slots = @parking.slots   
+    if params[:feature_ids].present?
+      # Filter slots based on selected features
+      @slots = @parking.slots.joins(:features).where(features: { id: params[:feature_ids] }).distinct
+    else
+      # If no feature selected, fetch all slots
+      @slots = @parking.slots
+    end 
   end
 
   # GET parkings/1/slots/1.json
