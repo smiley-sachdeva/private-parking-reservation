@@ -22,4 +22,10 @@ Rails.application.routes.draw do
     resources :features, except: [:edit, :new]
     resources :slots, except: [:edit, :new]
   end
+
+  resources :reservations do
+    member do
+      patch 'cancel'
+    end
+  end
 end

@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   rolify
 
+  has_many :reservations, foreign_key: 'customer_id'
+
   # Callbacks
   after_create :assign_default_role
 
