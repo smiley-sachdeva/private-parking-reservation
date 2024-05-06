@@ -22,4 +22,16 @@ Rails.application.routes.draw do
     resources :features, except: [:edit, :new]
     resources :slots, except: [:edit, :new]
   end
+
+  resources :slots, only: [] do
+      resources :parking_logs, only: [:index, :create, :show]
+  end
+
+  patch 'slots/:slot_id/checkout' => 'parking_logs#checkout'
+
+  resources :reservations do
+    member do
+      patch 'cancel'
+    end    
+  end
 end

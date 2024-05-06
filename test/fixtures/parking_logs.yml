@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checkin_time: 2024-05-06 12:17:45
+  checkout_time: 2024-05-06 12:17:45
+  duration: 1.5
+  price: 1.5
+  plate_number: MyString
+  reservation_id: 1
+
+two:
+  checkin_time: 2024-05-06 12:17:45
+  checkout_time: 2024-05-06 12:17:45
+  duration: 1.5
+  price: 1.5
+  plate_number: MyString
+  reservation_id: 1

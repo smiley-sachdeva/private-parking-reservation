@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_150133) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_100617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,11 +40,37 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_150133) do
     t.index ["jti"], name: "index_jwt_denylists_on_jti"
   end
 
+  create_table "parking_logs", force: :cascade do |t|
+    t.datetime "checkin_time"
+    t.datetime "checkout_time"
+    t.float "duration"
+    t.float "price"
+    t.string "plate_number"
+    t.integer "reservation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "slot_id"
+    t.string "ref_token"
+  end
+
   create_table "parkings", force: :cascade do |t|
     t.string "name"
     t.text "address"
     t.datetime "open_time"
     t.datetime "close_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.datetime "from"
+    t.datetime "to"
+    t.float "total_amount"
+    t.integer "slot_id"
+    t.integer "customer_id"
+    t.string "plate_number"
+    t.datetime "cancelled_at"
+    t.float "cancellation_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

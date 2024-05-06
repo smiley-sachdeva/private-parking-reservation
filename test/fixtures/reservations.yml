@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: 2024-05-05 12:30:52
+  to: 2024-05-05 12:30:52
+  total_amount: 1.5
+  slot_id: 1
+  customer_id: 1
+  plate_number: MyString
+  cancelled_at: 2024-05-05 12:30:52
+  cancellation_amount: 1.5
+
+two:
+  from: 2024-05-05 12:30:52
+  to: 2024-05-05 12:30:52
+  total_amount: 1.5
+  slot_id: 1
+  customer_id: 1
+  plate_number: MyString
+  cancelled_at: 2024-05-05 12:30:52
+  cancellation_amount: 1.5

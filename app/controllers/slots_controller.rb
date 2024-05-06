@@ -5,7 +5,6 @@ class SlotsController < ApplicationController
   # GET parkings/1/slots.json
   def index
     if params[:feature_ids].present?
-      byebug
       # Filter slots based on selected features
       @slots = @parking.slots.joins(:features).where(features: { id: params[:feature_ids] }).distinct
     else
