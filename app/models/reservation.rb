@@ -3,6 +3,7 @@ class Reservation < ApplicationRecord
 
     belongs_to :slot
     belongs_to :customer, class_name: 'User', foreign_key: 'customer_id'
+    has_one :parking_log
 
     validates :to, :from, presence: true, future: true#,  format: { with: /\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z\z/,
     #message: "format should be YYYY-MM-DD HH:MM:SS" }

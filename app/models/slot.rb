@@ -2,6 +2,7 @@ class Slot < ApplicationRecord
     has_and_belongs_to_many :features
     belongs_to :parking
     has_many :reservations
+    has_many :parking_logs
 
     enum status: {
         available: 0,

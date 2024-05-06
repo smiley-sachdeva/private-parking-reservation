@@ -51,7 +51,6 @@ class ReservationService
     end 
 
     def charge_for_cancellation(reservation, charge)
-      byebug
       reservation.update(cancelled_at: Time.now, cancellation_amount: charge)
     end
 
