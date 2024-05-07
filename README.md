@@ -33,6 +33,10 @@ To get started with the Private Parking Reservation API, follow these steps:
 
 For detailed documentation on the API endpoints and how to use them, refer to the [API Documentation file](https://documenter.getpostman.com/view/33525206/2sA3JJ82rr).
 
+# ERD 
+
+![ERD](https://github.com/smiley-sachdeva/private-parking-reservation/blob/main/db_erd.png?raw=true)
+
 # Features
 
 **1. User Authentication:**  Secure user authentication using Devise.

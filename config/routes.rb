@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   
-  resources :parkings, except: [:edit, :new] do
+  resources :parkings, except: [:edit, :new] do    
     resources :features, except: [:edit, :new]
     resources :slots, except: [:edit, :new]
   end
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   patch 'slots/:slot_id/checkout' => 'parking_logs#checkout'
+  get 'parkings/:parking_id/available_slots' => 'slots#available_slots'
 
   resources :reservations do
     member do

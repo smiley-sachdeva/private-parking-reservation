@@ -5,7 +5,7 @@ class Parking < ApplicationRecord
 
     validate :open_time_before_close_time
 
-    has_many :features
+    has_many :features  
 
     # TODO Added parkingid to slot directly, so no need to 
     # add complex query to fetch parking slots
@@ -13,6 +13,7 @@ class Parking < ApplicationRecord
     # has_many :slots, through: :features
     
     has_many :slots
+    has_many :reservations, through: :slots
 
     def open_time
         read_attribute(:open_time)&.strftime("%H:%M:%S")
